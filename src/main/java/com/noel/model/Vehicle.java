@@ -1,16 +1,22 @@
 package com.noel.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
+@Data
+@AllArgsConstructor
 @Entity
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Vehicle {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 50)
     private String id;
 
@@ -20,7 +26,19 @@ public class Vehicle {
 
     @Column(length = 30)
     private String owner;
+
+    @Column(length = 50)
+    private String model;
+
+    @Column(length = 50)
+    private String brand;
+
+    @JsonProperty("license_number")
+    @Column(length = 50)
+    private String licensePlateNumber;
+
+    @JsonProperty("associated_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(length = 30)
+    private Date associatedDate;
 }
-
-
-//14:08
