@@ -36,7 +36,8 @@ public class VehicleServiceImp implements VehicleService {
 
   @Override
   public void associate(String vehicleId, String userId) {
-    var vehicle = vehicleRepository.findById(vehicleId)
+    var vehicle = vehicleRepository
+            .findById(vehicleId)
             .filter(v -> v.getStatus() == Status.AVAILABLE)
             .orElseThrow();
 
@@ -46,6 +47,21 @@ public class VehicleServiceImp implements VehicleService {
     vehicle.setOwner(userId);
 
     //We update the vehicle entity
+    vehicleRepository.save(vehicle);
+  }
+
+  @Override
+  public void removeAssociation(String vehicleId, String userId) {
+    var vehicle = vehicleRepository
+            .findById(vehicleId)
+            .filter(v -> v.getStatus() == Status.ASSOCIATED)
+            .filter(v -> v.getOwner().equals(userId))
+            .orElseThrow();
+
+    vehicle.setOwner(null);
+    vehicle.setAssociatedDate(null);
+    vehicle.setStatus(Status.AVAILABLE);
+
     vehicleRepository.save(vehicle);
   }
 }

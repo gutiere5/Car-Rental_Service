@@ -38,8 +38,8 @@ public class VehicleController {
         vehicleService.associate(vehicleId, userId);
     }
 
-//    @PostMapping("/{vehicleId}/disassociate")
-//    public Vehicle disassociateVehicle(@PathVariable String vehicleId) {
-//        return vehicleService.disassociateVehicle(vehicleId);
-//    }
+    @DeleteMapping("/{vehicleId}/disassociate")
+    public void removeAssociation(@PathVariable String vehicleId, @PathVariable String userId) {
+        vehicleService.removeAssociation(vehicleId, userId);
+    }
 }

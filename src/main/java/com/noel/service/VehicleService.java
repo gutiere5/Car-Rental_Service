@@ -13,4 +13,6 @@ public interface VehicleService {
   Vehicle findById(String vehicleId);
 
   void associate(String vehicleId, String userId);
+
+  Vehicle removeAssociation(String vehicleId, String userId);
 }
