@@ -34,5 +34,18 @@ public class VehicleServiceImp implements VehicleService {
     return vehicleRepository.findById(vehicleId).orElseThrow();
   }
 
+  @Override
+  public void associate(String vehicleId, String userId) {
+    var vehicle = vehicleRepository.findById(vehicleId)
+            .filter(v -> v.getStatus() == Status.AVAILABLE)
+            .orElseThrow();
 
+    //Update parameters of the vehicle
+    vehicle.setStatus(Status.ASSOCIATED);
+    vehicle.setAssociatedDate(new Date());
+    vehicle.setOwner(userId);
+
+    //We update the vehicle entity
+    vehicleRepository.save(vehicle);
+  }
 }
