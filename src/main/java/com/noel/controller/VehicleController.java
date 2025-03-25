@@ -38,7 +38,7 @@ public class VehicleController {
         vehicleService.associate(vehicleId, userId);
     }
 
-    @DeleteMapping("/{vehicleId}/disassociate")
+    @DeleteMapping("/{vehicleId}/user/{userId}")
     public void removeAssociation(@PathVariable String vehicleId, @PathVariable String userId) {
         vehicleService.removeAssociation(vehicleId, userId);
     }

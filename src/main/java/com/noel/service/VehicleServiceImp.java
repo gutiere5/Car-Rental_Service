@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 @Service
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class VehicleServiceImp implements VehicleService {
 
     //Update parameters of the vehicle
     vehicle.setStatus(Status.ASSOCIATED);
-    vehicle.setAssociatedDate(new Date());
+    vehicle.setAssociatedDate( new Date() );
     vehicle.setOwner(userId);
 
     //We update the vehicle entity
