@@ -11,4 +11,8 @@ public interface VehicleService {
   List<Vehicle> getAllVehicles();
 
   Vehicle findById(String vehicleId);
+
+  void associate(String vehicleId, String userId);
+
+  void removeAssociation(String vehicleId, String userId);
 }

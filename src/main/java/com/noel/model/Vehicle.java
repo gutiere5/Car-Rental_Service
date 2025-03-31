@@ -26,7 +26,7 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(length = 30)
+    @Column(length = 50)
     private String owner;
 
     @NotBlank(message = AppConstants.MODEL_MANDATORY)

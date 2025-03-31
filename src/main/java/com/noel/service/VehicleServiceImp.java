@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 @Service
 @AllArgsConstructor
@@ -34,5 +35,34 @@ public class VehicleServiceImp implements VehicleService {
     return vehicleRepository.findById(vehicleId).orElseThrow();
   }
 
+  @Override
+  public void associate(String vehicleId, String userId) {
+    var vehicle = vehicleRepository
+            .findById(vehicleId)
+            .filter(v -> v.getStatus() == Status.AVAILABLE)
+            .orElseThrow();
 
+    //Update parameters of the vehicle
+    vehicle.setStatus(Status.ASSOCIATED);
+    vehicle.setAssociatedDate( new Date() );
+    vehicle.setOwner(userId);
+
+    //We update the vehicle entity
+    vehicleRepository.save(vehicle);
+  }
+
+  @Override
+  public void removeAssociation(String vehicleId, String userId) {
+    var vehicle = vehicleRepository
+            .findById(vehicleId)
+            .filter(v -> v.getStatus() == Status.ASSOCIATED)
+            .filter(v -> v.getOwner().equals(userId))
+            .orElseThrow();
+
+    vehicle.setOwner(null);
+    vehicle.setAssociatedDate(null);
+    vehicle.setStatus(Status.AVAILABLE);
+
+    vehicleRepository.save(vehicle);
+  }
 }
