@@ -2,7 +2,7 @@ package com.noel.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.noel.Constants.AppConstants;
+import com.noel.constants.AppConstants;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

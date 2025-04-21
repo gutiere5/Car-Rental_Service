@@ -1,4 +1,4 @@
-package com.noel.Constants;
+package com.noel.constants;
 
 public class AppConstants {
 
