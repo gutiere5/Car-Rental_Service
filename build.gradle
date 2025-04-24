@@ -41,5 +41,5 @@ tasks.named('test') {
 }
 
 tasks.bootJar {
-	archiveFileName = 'Car-Rental-Service.jar'
+	archiveFileName = 'car-rental-service.jar'
 }
